@@ -1,5 +1,5 @@
-﻿using UnityEditor.Rendering;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Events;
 
 namespace Assets.Scripts.Characters {
 	public class CharacterLocomotion : MonoBehaviour {
@@ -7,14 +7,11 @@ namespace Assets.Scripts.Characters {
 		[Header("Components")]
 		[SerializeField] private CharacterSettings.LocomotionSettings _locomotion;
 		[SerializeField] private CharacterSettings.GravitySettings _gravity;
-		[SerializeField] private Utilities.GroundCheck _groundCheck;
 		private CharacterBase _character;
 		private CharacterController _controller;
-		private Camera _mainCamera;
 
 		[Header("Inputs")]
 		private Vector2 _moveInput;
-		private Plane _mouseCheckPlane;
 
 		[Header("Input Smooth")]
 		private Vector2 _currentMoveInput;
@@ -22,25 +19,25 @@ namespace Assets.Scripts.Characters {
 
 		[Header("Velocity")]
 		private float _currentGravity;
+		private Vector3 _jumpForce;
+		private Vector3 _jumpForceVelocity;
+		public Vector3 Velocity { get; private set; }
 
-		private void OnDrawGizmos() {
-			_groundCheck.Draw();
-		}
+		public event UnityAction JumpEvent = delegate { };
 
 		private void OnEnable() {
-			_character.InputHandler.MoveInputEvent += SetMoveInput;
+			_character.InputHandler.MovementEvent += SetMoveInput;
+			_character.InputHandler.JumpEvent += HandleJump;
 		}
 
 		private void OnDisable() {
-			_character.InputHandler.MoveInputEvent -= SetMoveInput;
+			_character.InputHandler.MovementEvent -= SetMoveInput;
+			_character.InputHandler.JumpEvent -= HandleJump;
 		}
 
 		private void Awake() {
 			_character = GetComponent<CharacterBase>();
 			_controller = _character.Controller;
-			_mainCamera = Camera.main;
-
-			_mouseCheckPlane = new Plane(Vector3.up, Vector3.zero);
 		}
 
 		private void Update() {
@@ -48,6 +45,7 @@ namespace Assets.Scripts.Characters {
 			HandleGravity();
 			HandleMovement();
 			HandleRotation();
+			HandleJump();
 		}
 
 		private void HandleInputs() {
@@ -55,14 +53,17 @@ namespace Assets.Scripts.Characters {
 		}
 
 		private void HandleMovement() {
-			Vector3 moveDirection = new Vector3(_currentMoveInput.x, 0f, _currentMoveInput.y) * _locomotion.MoveSpeed;
-			moveDirection.y = _currentGravity;
+			Vector3 moveDirection = new Vector3(_currentMoveInput.x, 0f, _currentMoveInput.y);
+			Vector3 velocity = _locomotion.MoveSpeed * Time.deltaTime * moveDirection;
+			velocity.y = _currentGravity;
+			velocity += _jumpForce * Time.deltaTime;
 
-			_controller.Move(moveDirection * Time.deltaTime);
+			Velocity = velocity;
+			_controller.Move(Velocity);
 		}
 
 		private void HandleRotation() {
-			Vector3 direction = GetLookDirection();
+			Vector3 direction = _character.Camera.GetLookDirection();
 
 			if (Equals(direction, Vector3.zero)) {
 				return;
@@ -72,34 +73,32 @@ namespace Assets.Scripts.Characters {
 		}
 
 		private void HandleGravity() {
-			if (_currentGravity > _gravity.MaxFallSpeed) {
+			if (_currentGravity > _gravity.MaxFallSpeed && _jumpForce.y < 0.1f) {
 				_currentGravity += _gravity.Gravity * Time.deltaTime;
 			}
 
-			if (_currentGravity < 0.1f && _groundCheck.IsGrounded()) {
+			if (_currentGravity < 0.1f && _character.Gravity.IsGrounded()) {
+				_currentGravity = 0f;
+			}
+
+			if (_jumpForce.y > 0.1f) {
 				_currentGravity = 0f;
 			}
 		}
 
-		private void SetMoveInput(Vector2 moveInput) => _moveInput = moveInput;
-
-		private Vector3 GetLookPoint() {
-			// Move it to Camera script?
-
-			Vector3 point = Vector3.zero;
-			Ray ray = _mainCamera.ScreenPointToRay(UnityEngine.InputSystem.Mouse.current.position.ReadValue());
-			if (_mouseCheckPlane.Raycast(ray, out float enter)) {
-				point = ray.GetPoint(enter);
-			}
-
-			return point;
+		private void HandleJump() {
+			_jumpForce = Vector3.SmoothDamp(_jumpForce, Vector3.zero, ref _jumpForceVelocity, _gravity.JumpFalloff);
 		}
 
-		private Vector3 GetLookDirection() {
-			Vector3 direction = GetLookPoint() - transform.position;
-			direction.y = 0f;
+		private void SetMoveInput(Vector2 moveInput) => _moveInput = moveInput;
 
-			return direction;
+		private void HandleJump(bool value) {
+			if (!value || !_character.Gravity.IsGrounded()) {
+				return;
+			}
+
+			_jumpForce = Vector3.up * _gravity.JumpHeight;
+			JumpEvent?.Invoke();
 		}
 	}
 }

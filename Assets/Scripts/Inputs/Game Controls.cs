@@ -30,13 +30,40 @@ namespace Assets.Scripts.Inputs
             ""id"": ""093269bb-f790-476c-bd67-0c1fdcffba5a"",
             ""actions"": [
                 {
-                    ""name"": ""Move Input"",
+                    ""name"": ""Movement"",
                     ""type"": ""Value"",
                     ""id"": ""9059ed4a-96cc-4f48-81fa-5f341aad8992"",
                     ""expectedControlType"": ""Vector2"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""882c3e7e-b599-4a71-8b6e-561fff6a5ba7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Primary Mouse Button"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f496d99-a359-447e-8ce4-c61669c082ee"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Secondary Mouse Button "",
+                    ""type"": ""Button"",
+                    ""id"": ""e0e00f8e-d864-42eb-9fd0-a4511a4a2a07"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -47,7 +74,7 @@ namespace Assets.Scripts.Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move Input"",
+                    ""action"": ""Movement"",
                     ""isComposite"": true,
                     ""isPartOfComposite"": false
                 },
@@ -58,7 +85,7 @@ namespace Assets.Scripts.Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move Input"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -69,7 +96,7 @@ namespace Assets.Scripts.Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move Input"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -80,7 +107,7 @@ namespace Assets.Scripts.Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move Input"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
@@ -91,9 +118,42 @@ namespace Assets.Scripts.Inputs
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Move Input"",
+                    ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b58545f-f423-42da-8c61-180152942ed3"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""eb298287-4cdc-4394-89ac-0239090129c2"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Primary Mouse Button"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c650dd4c-1336-466b-b51a-c1eb9d5badd3"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Secondary Mouse Button "",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -102,7 +162,10 @@ namespace Assets.Scripts.Inputs
 }");
             // Character
             m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
-            m_Character_MoveInput = m_Character.FindAction("Move Input", throwIfNotFound: true);
+            m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
+            m_Character_Jump = m_Character.FindAction("Jump", throwIfNotFound: true);
+            m_Character_PrimaryMouseButton = m_Character.FindAction("Primary Mouse Button", throwIfNotFound: true);
+            m_Character_SecondaryMouseButton = m_Character.FindAction("Secondary Mouse Button ", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -164,12 +227,18 @@ namespace Assets.Scripts.Inputs
         // Character
         private readonly InputActionMap m_Character;
         private List<ICharacterActions> m_CharacterActionsCallbackInterfaces = new List<ICharacterActions>();
-        private readonly InputAction m_Character_MoveInput;
+        private readonly InputAction m_Character_Movement;
+        private readonly InputAction m_Character_Jump;
+        private readonly InputAction m_Character_PrimaryMouseButton;
+        private readonly InputAction m_Character_SecondaryMouseButton;
         public struct CharacterActions
         {
             private @GameControls m_Wrapper;
             public CharacterActions(@GameControls wrapper) { m_Wrapper = wrapper; }
-            public InputAction @MoveInput => m_Wrapper.m_Character_MoveInput;
+            public InputAction @Movement => m_Wrapper.m_Character_Movement;
+            public InputAction @Jump => m_Wrapper.m_Character_Jump;
+            public InputAction @PrimaryMouseButton => m_Wrapper.m_Character_PrimaryMouseButton;
+            public InputAction @SecondaryMouseButton => m_Wrapper.m_Character_SecondaryMouseButton;
             public InputActionMap Get() { return m_Wrapper.m_Character; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -179,16 +248,34 @@ namespace Assets.Scripts.Inputs
             {
                 if (instance == null || m_Wrapper.m_CharacterActionsCallbackInterfaces.Contains(instance)) return;
                 m_Wrapper.m_CharacterActionsCallbackInterfaces.Add(instance);
-                @MoveInput.started += instance.OnMoveInput;
-                @MoveInput.performed += instance.OnMoveInput;
-                @MoveInput.canceled += instance.OnMoveInput;
+                @Movement.started += instance.OnMovement;
+                @Movement.performed += instance.OnMovement;
+                @Movement.canceled += instance.OnMovement;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
+                @PrimaryMouseButton.started += instance.OnPrimaryMouseButton;
+                @PrimaryMouseButton.performed += instance.OnPrimaryMouseButton;
+                @PrimaryMouseButton.canceled += instance.OnPrimaryMouseButton;
+                @SecondaryMouseButton.started += instance.OnSecondaryMouseButton;
+                @SecondaryMouseButton.performed += instance.OnSecondaryMouseButton;
+                @SecondaryMouseButton.canceled += instance.OnSecondaryMouseButton;
             }
 
             private void UnregisterCallbacks(ICharacterActions instance)
             {
-                @MoveInput.started -= instance.OnMoveInput;
-                @MoveInput.performed -= instance.OnMoveInput;
-                @MoveInput.canceled -= instance.OnMoveInput;
+                @Movement.started -= instance.OnMovement;
+                @Movement.performed -= instance.OnMovement;
+                @Movement.canceled -= instance.OnMovement;
+                @Jump.started -= instance.OnJump;
+                @Jump.performed -= instance.OnJump;
+                @Jump.canceled -= instance.OnJump;
+                @PrimaryMouseButton.started -= instance.OnPrimaryMouseButton;
+                @PrimaryMouseButton.performed -= instance.OnPrimaryMouseButton;
+                @PrimaryMouseButton.canceled -= instance.OnPrimaryMouseButton;
+                @SecondaryMouseButton.started -= instance.OnSecondaryMouseButton;
+                @SecondaryMouseButton.performed -= instance.OnSecondaryMouseButton;
+                @SecondaryMouseButton.canceled -= instance.OnSecondaryMouseButton;
             }
 
             public void RemoveCallbacks(ICharacterActions instance)
@@ -208,7 +295,10 @@ namespace Assets.Scripts.Inputs
         public CharacterActions @Character => new CharacterActions(this);
         public interface ICharacterActions
         {
-            void OnMoveInput(InputAction.CallbackContext context);
+            void OnMovement(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
+            void OnPrimaryMouseButton(InputAction.CallbackContext context);
+            void OnSecondaryMouseButton(InputAction.CallbackContext context);
         }
     }
 }

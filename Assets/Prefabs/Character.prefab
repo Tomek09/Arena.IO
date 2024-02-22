@@ -601,8 +601,10 @@ GameObject:
   - component: {fileID: 5513569683441709674}
   - component: {fileID: 756533025097232931}
   - component: {fileID: 4665538464908680284}
+  - component: {fileID: 2473196900306469197}
   - component: {fileID: 3581359803456779131}
   - component: {fileID: 861898981514626768}
+  - component: {fileID: 2756582692648531609}
   m_Layer: 6
   m_Name: Character
   m_TagString: Untagged
@@ -667,8 +669,10 @@ MonoBehaviour:
   <Controller>k__BackingField: {fileID: 5513569683441709674}
   <Animator>k__BackingField: {fileID: 1356000826499977462}
   <InputHandler>k__BackingField: {fileID: 4665538464908680284}
+  <Camera>k__BackingField: {fileID: 2473196900306469197}
   <Locomotion>k__BackingField: {fileID: 3581359803456779131}
   <Animation>k__BackingField: {fileID: 861898981514626768}
+  <Gravity>k__BackingField: {fileID: 2756582692648531609}
 --- !u!114 &4665538464908680284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -679,6 +683,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c2601b4eac77d514ab0821b6f7c50c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &2473196900306469197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8218906359037962191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b97dd54a5f2c934988427a45cba29a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3581359803456779131
@@ -698,15 +714,10 @@ MonoBehaviour:
     RotateSpeed: 3
     InputSmoothSpeed: 0.05
   _gravity:
-    Gravity: -9.81
-    MaxFallSpeed: -10
-  _groundCheck:
-    _offset: {x: 0, y: 0.05, z: 0}
-    _radius: 0.12
-    _layerMask:
-      serializedVersion: 2
-      m_Bits: 55
-    _transform: {fileID: 8135867564704942139}
+    Gravity: -0.05
+    MaxFallSpeed: -3
+    JumpHeight: 6
+    JumpFalloff: 0.05
 --- !u!114 &861898981514626768
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -721,3 +732,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animation:
     LocomotionDampTime: 0.1
+--- !u!114 &2756582692648531609
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8218906359037962191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 898fed201f3df84479fd08d41f209ff4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _groundCheck:
+    _offset: {x: 0, y: 0.1, z: 0}
+    _radius: 0.12
+    _layerMask:
+      serializedVersion: 2
+      m_Bits: 55
+    _transform: {fileID: 8135867564704942139}

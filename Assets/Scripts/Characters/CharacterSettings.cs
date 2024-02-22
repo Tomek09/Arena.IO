@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-
+﻿
 namespace Assets.Scripts.Characters {
 	public class CharacterSettings {
 
@@ -14,6 +13,8 @@ namespace Assets.Scripts.Characters {
 		public class GravitySettings {
 			public float Gravity = -9.81f;
 			public float MaxFallSpeed = -10f;
+			public float JumpHeight;
+			public float JumpFalloff;
 
 		}
 

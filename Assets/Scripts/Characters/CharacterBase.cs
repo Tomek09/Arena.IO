@@ -9,8 +9,10 @@ namespace Assets.Scripts.Characters {
 
 		[field: Header("Components")]
 		[field: SerializeField] public CharacterInputHandler InputHandler { get; private set; }
+		[field: SerializeField] public CharacterCamera Camera { get; private set; }
 		[field: SerializeField] public CharacterLocomotion Locomotion { get; private set; }
 		[field: SerializeField] public CharacterAnimation Animation { get; private set; }
+		[field: SerializeField] public CharacterGravity Gravity { get; private set; }
 
 		private void Start() {
 			Cameras.CameraManager.Instance.SetTarget(transform);
