@@ -1,6 +1,4 @@
-﻿using NUnit.Framework;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Assets.Editor.Utilities {
 	public class ScenesDatabase : DatabaseSO {
@@ -44,9 +42,7 @@ namespace Assets.Editor.Utilities {
 				return;
 			}
 
-			SceneInfo temp = ScenesInfo[currentIndex];
-			ScenesInfo[currentIndex] = ScenesInfo[newIndex];
-			ScenesInfo[newIndex] = temp;
+			(ScenesInfo[newIndex], ScenesInfo[currentIndex]) = (ScenesInfo[currentIndex], ScenesInfo[newIndex]);
 		}
 	}
 }
