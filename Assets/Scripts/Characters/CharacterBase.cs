@@ -12,5 +12,9 @@ namespace Assets.Scripts.Characters {
 		[field: SerializeField] public CharacterLocomotion Locomotion { get; private set; }
 		[field: SerializeField] public CharacterAnimation Animation { get; private set; }
 
+		private void Start() {
+			Cameras.CameraManager.Instance.SetTarget(transform);
+		}
+
 	}
 }

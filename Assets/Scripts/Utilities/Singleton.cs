@@ -1,7 +1,7 @@
 ﻿using Unity.Netcode;
 using UnityEngine;
 
-namespace Assets.Scripts.Utility {
+namespace Assets.Scripts.Utilities {
 	public class Singleton<T> : MonoBehaviour where T : Component {
 		public static T Instance { get; private set; }
 

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Scripts.Utility {
+namespace Assets.Scripts.Utilities {
 	public static class GameObjects {
 
 		public static T GOInstantiate<T>(T prefab, string name, Vector3 position = default, Vector3 eulerAngles = default, Transform parent = null, bool localizeTransform = false) where T : Object {

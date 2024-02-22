@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a113f01546a94842bbfba8d4ec87083, type: 3}
+  m_Name: Camera Preset - Default
+  m_EditorClassIdentifier: 
+  <Body>k__BackingField:
+    Value: {x: 0, y: 0, z: 0}
+    InitDuration: 0.1
+    UpdateTime: 1
+  <Rig>k__BackingField:
+    Value: {x: 60, y: 0, z: 0}
+    InitDuration: 0.1
+    UpdateTime: 1
+  <Lens>k__BackingField:
+    Value: -10
+    InitDuration: 0.1
+    UpdateTime: 1
+  <FollowSpeed>k__BackingField: 25
+  <FollowFreezeY>k__BackingField: 1
