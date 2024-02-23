@@ -1,5 +1,4 @@
-﻿using Unity.Netcode;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Players {
 	public class PlayersGUI : MonoBehaviour {
@@ -14,13 +13,7 @@ namespace Assets.Scripts.Players {
 		}
 
 		private void DrawPlayer(int index, PlayerInstance playerInstance) {
-			string output = string.Empty;
-			if (NetworkManager.Singleton.IsServer && NetworkManager.Singleton.LocalClientId == playerInstance.ClientId) {
-				output += "[SERVER] ";
-			}
-
-			output += $"{playerInstance.ClientId} [{playerInstance.IsReady}]";
-
+			string output = $"{playerInstance.ClientId} [{playerInstance.TeamId}] [{playerInstance.IsReady}]";
 			Utilities.GUIDrawer.DrawLabel(2, index + 1, output, TextAnchor.MiddleLeft);
 		}
 	}

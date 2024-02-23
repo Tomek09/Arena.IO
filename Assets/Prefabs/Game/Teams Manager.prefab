@@ -1,0 +1,55 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &700536441223835374
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8642114196350838058}
+  - component: {fileID: 1323012663312379450}
+  m_Layer: 0
+  m_Name: Teams Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8642114196350838058
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700536441223835374}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1323012663312379450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700536441223835374}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b427f9f3cb2f489408e88da2b068c171, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _teamPalettes:
+  - {fileID: 11400000, guid: 9182a606821bd7c42bbb979e99532a82, type: 2}
+  - {fileID: 11400000, guid: ad2b4e178bd7b9240968cd5e7e8c8de2, type: 2}
+  - {fileID: 11400000, guid: 6e420efb2cc341148ab7c426b8bdeef9, type: 2}
+  - {fileID: 11400000, guid: 2f6cced41a0416148be40d10391130ea, type: 2}
+  - {fileID: 11400000, guid: 20c327dc5d6f484479779ab8af3574cc, type: 2}
+  - {fileID: 11400000, guid: 5ba5510d19e08294e8416e2416c73e76, type: 2}
+  - {fileID: 11400000, guid: ae7ea60512c9c3c479fde413573a0454, type: 2}
+  - {fileID: 11400000, guid: 8e90d0709f0d3af4b859819b7755b1da, type: 2}

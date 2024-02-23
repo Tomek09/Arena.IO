@@ -6,9 +6,11 @@ namespace Assets.Scripts.Players {
 
 		public ulong ClientId { get; private set; }
 		public bool IsReady { get; set; } = false;
+		public int TeamId { get; private set; } = 0;
 
 		public PlayerInstance(ulong clientId) {
 			ClientId = clientId;
+			TeamId = (int)clientId;
 		}
 	}
 }
