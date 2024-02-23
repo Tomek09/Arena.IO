@@ -19,6 +19,9 @@ MonoBehaviour:
   - DisplayName: Game Scene
     SceneName: Game Scene
     Path: Assets/Scenes/Game Scene.unity
-  - DisplayName: Sample Scene
-    SceneName: SampleScene
-    Path: Assets/Scenes/SampleScene.unity
+  - DisplayName: Menu
+    SceneName: Menu
+    Path: Assets/Scenes/Menu.unity
+  - DisplayName: Lobby
+    SceneName: Lobby
+    Path: Assets/Scenes/Lobby.unity
