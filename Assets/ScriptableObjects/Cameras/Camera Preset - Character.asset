@@ -10,18 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0a113f01546a94842bbfba8d4ec87083, type: 3}
-  m_Name: Camera Preset - Default
+  m_Name: Camera Preset - Character
   m_EditorClassIdentifier: 
+  <CameraType>k__BackingField: 1
   <Body>k__BackingField:
     Value: {x: 0, y: 0, z: 0}
     InitDuration: 0.1
     UpdateTime: 1
   <Rig>k__BackingField:
-    Value: {x: 90, y: 0, z: 0}
+    Value: {x: 60, y: 0, z: 0}
     InitDuration: 0.1
     UpdateTime: 1
   <Lens>k__BackingField:
-    Value: -10
+    Value: -8
     InitDuration: 0.1
     UpdateTime: 1
   <FollowSpeed>k__BackingField: 25

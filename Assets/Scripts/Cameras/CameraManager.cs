@@ -1,6 +1,7 @@
 ﻿using DG.Tweening;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 namespace Assets.Scripts.Cameras {
 	public class CameraManager : Utilities.Singleton<CameraManager> {
@@ -12,9 +13,15 @@ namespace Assets.Scripts.Cameras {
 
 		[Header("Presets")]
 		[SerializeField] private CameraPreset[] _presets;
+		private Dictionary<CameraType, CameraPreset> _presetsByType;
 		private CameraPreset _currentPreset;
 
 		private Transform _followTarget;
+
+		public override void Awake() {
+			base.Awake();
+			_presetsByType = _presets.ToDictionary(x => x.CameraType);
+		}
 
 		private void Start() {
 			SetPreset(_presets[0]);
@@ -33,6 +40,16 @@ namespace Assets.Scripts.Cameras {
 		public void SetTarget(Transform target) {
 			_followTarget = target;
 		}
+
+
+		public void SetPreset(CameraPreset cameraPreset) {
+			_currentPreset = cameraPreset;
+			_body.DOMove(_currentPreset.Body.Value, _currentPreset.Body.InitDuration);
+			_rig.DOLocalRotate(_currentPreset.Rig.Value, _currentPreset.Rig.InitDuration);
+			_lens.DOLocalMove(Vector3.forward * _currentPreset.Lens.Value, _currentPreset.Lens.InitDuration);
+		}
+
+		public void SetPreset(CameraType cameraType) => SetPreset(_presetsByType[cameraType]);
 
 
 		private void HandleBody() {
@@ -66,14 +83,6 @@ namespace Assets.Scripts.Cameras {
 			}
 
 			_body.position = Vector3.Lerp(currentPosition, desinationPosition, _currentPreset.FollowSpeed * Time.deltaTime);
-		}
-
-
-		private void SetPreset(CameraPreset cameraPreset) {
-			_currentPreset = cameraPreset;
-			_body.DOMove(_currentPreset.Body.Value, _currentPreset.Body.InitDuration);
-			_rig.DOLocalRotate(_currentPreset.Rig.Value, _currentPreset.Rig.InitDuration);
-			_lens.DOLocalMove(Vector3.forward * _currentPreset.Lens.Value, _currentPreset.Lens.InitDuration);
 		}
 	}
 }

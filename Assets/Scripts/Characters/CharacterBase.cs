@@ -22,6 +22,7 @@ namespace Assets.Scripts.Characters {
 				return;
 			}
 
+			Cameras.CameraManager.Instance.SetPreset(Cameras.CameraType.Character);
 			Cameras.CameraManager.Instance.SetTarget(transform);
 		}
 

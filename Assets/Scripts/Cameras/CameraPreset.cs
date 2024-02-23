@@ -17,6 +17,9 @@ namespace Assets.Scripts.Cameras {
 			}
 		}
 
+		[field: Header("Settings")]
+		[field: SerializeField] public CameraType CameraType { get; private set; } = CameraType.Default;
+
 		[field: Header("Values")]
 		[field: SerializeField] public Settings<Vector3> Body { get; private set; } = new Settings<Vector3>(Vector3.zero, .1f, 1f);
 		[field: SerializeField] public Settings<Vector3> Rig { get; private set; } = new Settings<Vector3>(Vector3.right * 60f, .1f, 1f);

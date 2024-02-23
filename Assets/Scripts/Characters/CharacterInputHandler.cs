@@ -6,6 +6,7 @@ namespace Assets.Scripts.Characters {
 	public class CharacterInputHandler : MonoBehaviour, Inputs.GameControls.ICharacterActions {
 
 		[Header("Components")]
+		private CharacterBase _character;
 		private Inputs.GameControls _inputsActions;
 
 		public event UnityAction<Vector2> MovementEvent = delegate { };
@@ -13,7 +14,15 @@ namespace Assets.Scripts.Characters {
 		public event UnityAction<bool> PrimaryMouseEvent = delegate { };
 		public event UnityAction<bool> SecondaryMouseEvent = delegate { };
 
+		private void Awake() {
+			_character = GetComponent<CharacterBase>();
+		}
+
 		private void Start() {
+			if (!_character.IsLocalPlayer) {
+				return;
+			}
+
 			_inputsActions = new Inputs.GameControls();
 			_inputsActions.Character.AddCallbacks(this);
 
