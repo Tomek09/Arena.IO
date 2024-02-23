@@ -20,7 +20,7 @@ namespace Assets.Scripts.Gameplay {
 		}
 
 		private void Start() {
-			Players.PlayersManager.Instance.RequestReadyStatus(true);
+			Players.PlayersManager.Instance.SetReadyStatus(true);
 		}
 
 		private void OnPlayerReadyChange(ulong _, bool __) {
@@ -29,6 +29,7 @@ namespace Assets.Scripts.Gameplay {
 			}
 
 			Debug.Log("Start Game!");
+			Characters.CharactersManager.Instance.InitializeCharacters();
 		}
 	}
 }

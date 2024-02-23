@@ -40,7 +40,7 @@ namespace Assets.Scripts.Characters {
 			_controller = _character.Controller;
 		}
 
-		private void Update() {
+		public void Tick() {
 			HandleInputs();
 			HandleGravity();
 			HandleMovement();

@@ -22,7 +22,7 @@ namespace Assets.Scripts.Characters {
 			_locomotion = character.Locomotion;
 		}
 
-		private void Update() {
+		public void Tick() {
 			_wasFalling = _isFalling;
 			_isFalling = IsFalling();
 			if(_isFalling && !_wasFalling) {

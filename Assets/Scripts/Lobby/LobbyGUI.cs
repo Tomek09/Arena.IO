@@ -5,7 +5,7 @@ namespace Assets.Scripts.Lobby {
 
 		private void OnGUI() {
 			Utilities.GUIDrawer.DrawLabel(0, 0, "[Lobby]", TextAnchor.MiddleCenter);
-			Utilities.GUIDrawer.DrawButton(0, 1, "Ready", Players.PlayersManager.Instance.ChangeReadyStatus);
+			Utilities.GUIDrawer.DrawButton(0, 1, "Ready", Players.PlayersManager.Instance.SetReadyStatus);
 			Utilities.GUIDrawer.DrawButton(0, 2, "Disconnect", LobbyManager.Instance.Disconnect);
 
 			if (!LobbyManager.Instance.IsServer) {

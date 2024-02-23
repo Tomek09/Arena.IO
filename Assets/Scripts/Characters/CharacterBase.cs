@@ -1,7 +1,8 @@
-﻿using UnityEngine;
+﻿using Unity.Netcode;
+using UnityEngine;
 
 namespace Assets.Scripts.Characters {
-	public class CharacterBase : MonoBehaviour {
+	public class CharacterBase : NetworkBehaviour {
 
 		[field: Header("Components")]
 		[field: SerializeField] public CharacterController Controller { get; private set; }
@@ -17,7 +18,21 @@ namespace Assets.Scripts.Characters {
 		[field: SerializeField] public CharacterInventory Inventory { get; private set; }
 
 		private void Start() {
+			if (!IsLocalPlayer) {
+				return;
+			}
+
 			Cameras.CameraManager.Instance.SetTarget(transform);
+		}
+
+		private void Update() {
+			if (!IsLocalPlayer) {
+				return;
+			}
+
+			Locomotion.Tick();
+			Animation.Tick();
+			Gravity.Tick();
 		}
 
 	}

@@ -39,7 +39,7 @@ namespace Assets.Scripts.Characters {
 			_isFalling = Animator.StringToHash("isFalling");
 		}
 
-		private void Update() {
+		public void Tick() {
 			HandleLocomotion();
 		}
 

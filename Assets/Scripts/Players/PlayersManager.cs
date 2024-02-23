@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Unity.Netcode;
+using UnityEngine;
 
 namespace Assets.Scripts.Players {
 	public class PlayersManager : Utilities.SingletonNetworkPersistent<PlayersManager> {
@@ -29,7 +30,7 @@ namespace Assets.Scripts.Players {
 				SendNewClient(id, clientId);    // Add new client to current client
 				SendNewClient(clientId, id);    // Add current client to new client
 
-				UpdateReadyStatus(id, false);
+				UpdateReadyStatusRPC(id, false);
 			}
 
 			// Send new client to himself
@@ -47,7 +48,7 @@ namespace Assets.Scripts.Players {
 
 		public void SetPlayersReadyStatus(bool value) {
 			foreach (KeyValuePair<ulong, PlayerInstance> item in _currentPlayers) {
-				SetClientReadyStatusRPC(item.Key, value);
+				UpdateReadyStatusRPC(item.Key, value);
 			}
 		}
 
@@ -56,6 +57,10 @@ namespace Assets.Scripts.Players {
 
 		[Rpc(SendTo.SpecifiedInParams)]
 		private void RemoveClientRPC(ulong clientId, RpcParams rpcParams) => RemovePlayer(clientId);
+
+		private void ReciveReadyStatus(ulong clientId, bool value) {
+			UpdateReadyStatusRPC(clientId, value);
+		}
 
 		// Clients
 
@@ -80,39 +85,29 @@ namespace Assets.Scripts.Players {
 			OnClearPlayers?.Invoke();
 		}
 
-		private void UpdateReadyStatus(ulong clientId, bool value) {
-			_currentPlayers[clientId].IsReady = value;
-			OnReadyStatusPlayer?.Invoke(clientId, value);
-		}
 
-		public void ChangeReadyStatus() {
-			bool value = LocalPlayerInstance.IsReady;
-			RequestReadyStatus(!value);
-		}
+		public void SetReadyStatus(bool value) => SendReadyStatusRequestRPC(LocalPlayerInstance.ClientId, value);
 
-		public void RequestReadyStatus(bool value) {
-			RequestReadyStatus(LocalPlayerInstance.ClientId, value);
-		}
+		public void SetReadyStatus() => SetReadyStatus(!LocalPlayerInstance.IsReady);
 
-		public void RequestReadyStatus(ulong clientId, bool value) {
-			SetClientReadyStatusRPC(clientId, value);
-		}
 
-		public PlayerInstance GetPlayerInstance(ulong clientId) {
-			return _currentPlayers[clientId];
-		}
+		public PlayerInstance GetPlayerInstance(ulong clientId) => _currentPlayers[clientId];
 
-		public PlayerInstance[] GetPlayerInstances() {
-			return _currentPlayers.Values.ToArray();
-		}
+		public PlayerInstance[] GetPlayerInstances() => _currentPlayers.Values.ToArray();
 
-		public bool IsPlayersReady() {
-			return _currentPlayers.All(item => item.Value.IsReady);
-		}
+		public bool IsPlayersReady() => _currentPlayers.All(item => item.Value.IsReady);
+
 
 		[Rpc(SendTo.Server)]
-		public void SetClientReadyStatusRPC(ulong clientId, bool value) {
-			UpdateReadyStatus(clientId, value);
+		public void SendReadyStatusRequestRPC(ulong clientId, bool value) {
+			ReciveReadyStatus(clientId, value);
+		}
+
+
+		[Rpc(SendTo.Everyone)]
+		private void UpdateReadyStatusRPC(ulong clientId, bool value) {
+			_currentPlayers[clientId].IsReady = value;
+			OnReadyStatusPlayer?.Invoke(clientId, value);
 		}
 	}
 }

@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &487286741202665115
+--- !u!1 &3913869283487264371
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 2767519504507019395}
-  - component: {fileID: 1207790766943411048}
-  - component: {fileID: 5550098038330808025}
+  - component: {fileID: 830047153431136865}
+  - component: {fileID: 5741250838809955080}
+  - component: {fileID: 98404960526769602}
   m_Layer: 0
-  m_Name: Characters Manager
+  m_Name: 'Network Gameobjects '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &2767519504507019395
+--- !u!4 &830047153431136865
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487286741202665115}
+  m_GameObject: {fileID: 3913869283487264371}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -33,20 +33,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1207790766943411048
+--- !u!114 &5741250838809955080
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487286741202665115}
+  m_GameObject: {fileID: 3913869283487264371}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 760195414
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3806974437
+  InScenePlacedSourceGlobalObjectIdHash: 1138802162
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
   ActiveSceneSynchronization: 0
@@ -54,17 +54,15 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &5550098038330808025
+--- !u!114 &98404960526769602
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 487286741202665115}
+  m_GameObject: {fileID: 3913869283487264371}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25bf0e100a525cd4788da97f283f7efa, type: 3}
+  m_Script: {fileID: 11500000, guid: b0c2ac48ea46cd441bf294e19a5acdd6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _characterPrefab: {fileID: 756533025097232931, guid: 96050543861c0dc4f830fb217daff984,
-    type: 3}

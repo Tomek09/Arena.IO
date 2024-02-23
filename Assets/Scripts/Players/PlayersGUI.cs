@@ -21,7 +21,7 @@ namespace Assets.Scripts.Players {
 
 			output += $"{playerInstance.ClientId} [{playerInstance.IsReady}]";
 
-			Utilities.GUIDrawer.DrawLabel(2, index + 1, output, TextAnchor.MiddleCenter);
+			Utilities.GUIDrawer.DrawLabel(2, index + 1, output, TextAnchor.MiddleLeft);
 		}
 	}
 }
