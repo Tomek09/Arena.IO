@@ -15,7 +15,7 @@ namespace Assets.Scripts.Characters {
 		public Vector3 GetLookPoint() {
 			Vector3 point = Vector3.zero;
 			Vector3 cursorPosition = UnityEngine.InputSystem.Mouse.current.position.ReadValue();
-			cursorPosition.y = -30;
+			//cursorPosition.y = -30;
 			Ray ray = _mainCamera.ScreenPointToRay(cursorPosition);
 			if (_mouseCheckPlane.Raycast(ray, out float enter)) {
 				point = ray.GetPoint(enter);

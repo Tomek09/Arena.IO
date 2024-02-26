@@ -45,11 +45,43 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _teamPalettes:
-  - {fileID: 11400000, guid: 9182a606821bd7c42bbb979e99532a82, type: 2}
-  - {fileID: 11400000, guid: ad2b4e178bd7b9240968cd5e7e8c8de2, type: 2}
-  - {fileID: 11400000, guid: 6e420efb2cc341148ab7c426b8bdeef9, type: 2}
-  - {fileID: 11400000, guid: 2f6cced41a0416148be40d10391130ea, type: 2}
-  - {fileID: 11400000, guid: 20c327dc5d6f484479779ab8af3574cc, type: 2}
-  - {fileID: 11400000, guid: 5ba5510d19e08294e8416e2416c73e76, type: 2}
-  - {fileID: 11400000, guid: ae7ea60512c9c3c479fde413573a0454, type: 2}
-  - {fileID: 11400000, guid: 8e90d0709f0d3af4b859819b7755b1da, type: 2}
+  - name: Red
+    <TeamName>k__BackingField: Red
+    <Color>k__BackingField: {r: 0.8196079, g: 0.3019608, b: 0.25490198, a: 1}
+    <MainMaterial>k__BackingField: {fileID: 2100000, guid: 1cea711649f5f2c4dbcdb8bd052688d5,
+      type: 2}
+  - name: Cyan
+    <TeamName>k__BackingField: Cyan
+    <Color>k__BackingField: {r: 0.227451, g: 0.6627451, b: 0.62352943, a: 1}
+    <MainMaterial>k__BackingField: {fileID: 2100000, guid: a7e36b6881386464da11834594704e7f,
+      type: 2}
+  - name: Green
+    <TeamName>k__BackingField: Green
+    <Color>k__BackingField: {r: 0.5294118, g: 0.6039216, b: 0.22352943, a: 1}
+    <MainMaterial>k__BackingField: {fileID: 2100000, guid: 886fb11b0f4f9f34cbddcabc571f91e8,
+      type: 2}
+  - name: Orange
+    <TeamName>k__BackingField: Orange
+    <Color>k__BackingField: {r: 0.854902, g: 0.43921572, b: 0.17254902, a: 1}
+    <MainMaterial>k__BackingField: {fileID: 2100000, guid: 6c742d82e8ea1ae4a893d876d2252abc,
+      type: 2}
+  - name: Pink
+    <TeamName>k__BackingField: Pink
+    <Color>k__BackingField: {r: 0.8078432, g: 0.3647059, b: 0.5921569, a: 1}
+    <MainMaterial>k__BackingField: {fileID: 2100000, guid: da4c97244726f2a469fc7af2c3324cb1,
+      type: 2}
+  - name: Purple
+    <TeamName>k__BackingField: Purple
+    <Color>k__BackingField: {r: 0.54509807, g: 0.49411768, b: 0.7843138, a: 1}
+    <MainMaterial>k__BackingField: {fileID: 2100000, guid: 7c1fd845627eb1c42853bd83b79c3480,
+      type: 2}
+  - name: Yellow
+    <TeamName>k__BackingField: Yellow
+    <Color>k__BackingField: {r: 0.81568635, g: 0.63529414, b: 0.08235294, a: 1}
+    <MainMaterial>k__BackingField: {fileID: 2100000, guid: a9ce66e4cffc1e8498a11ade5bfe2f19,
+      type: 2}
+  - name: Blue
+    <TeamName>k__BackingField: Blue
+    <Color>k__BackingField: {r: 0.2627451, g: 0.52156866, b: 0.74509805, a: 1}
+    <MainMaterial>k__BackingField: {fileID: 2100000, guid: 97418403f25cee8458a2d96070930e62,
+      type: 2}
