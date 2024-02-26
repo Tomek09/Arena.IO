@@ -9,9 +9,13 @@ namespace Assets.Scripts.Items.Weapons {
 				return;
 			}
 
-			_character.Animator.SetTrigger(GetAttackId());
+			_owner.Animator.SetTrigger(GetAttackId());
 		}
 
+		public override void PrimaryUseRpc() { }
+
 		public override void OnSecondaryUse(bool value) { }
+
+		public override void SecondaryUseRpc() { }
 	}
 }

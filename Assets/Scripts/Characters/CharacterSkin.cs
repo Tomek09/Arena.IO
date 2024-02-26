@@ -5,9 +5,7 @@ namespace Assets.Scripts.Characters {
 
 		[Header("Components")]
 		[SerializeField] private Renderer[] _renderers;
-		[SerializeField] private Material _defaultCharacterMaterial;
 		private CharacterBase _character;
-		private Material _teamMaterial;
 
 		private void Awake() {
 			_character = GetComponent<CharacterBase>();
@@ -16,14 +14,11 @@ namespace Assets.Scripts.Characters {
 		private void Start() {
 			ulong clientId = _character.OwnerClientId;
 			Players.PlayerInstance playerInstance = Players.PlayersManager.Instance.GetPlayerInstance(clientId);
-			Teams.TeamPalette palette = Teams.TeamsManager.Instance.GetTeamPalette(playerInstance.TeamId);
-			Color color = palette.Color;
-			_teamMaterial = new Material(_defaultCharacterMaterial);
-			_teamMaterial.SetColor("_Color", color);
+			Material mainMaterial = Teams.TeamsManager.Instance.GetTeamPalette(playerInstance.TeamId).MainMaterial;
 
 			for (int i = 0; i < _renderers.Length; i++) {
 				Renderer renderer = _renderers[i];
-				renderer.material = _teamMaterial;
+				renderer.material = mainMaterial;
 			}
 		}
 	}

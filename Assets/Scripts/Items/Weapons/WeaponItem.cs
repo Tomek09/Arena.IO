@@ -13,6 +13,9 @@ namespace Assets.Scripts.Items.Weapons {
 		[SerializeField] private AttackTrigger _attackType;
 		private Dictionary<AttackTrigger, int> _attackTriggerByType;
 
+		[Header("Values")]
+		[SerializeField] protected int _damage;
+
 		public override void Initialize(Characters.CharacterBase character) {
 			base.Initialize(character);
 

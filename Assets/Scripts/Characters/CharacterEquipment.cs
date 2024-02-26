@@ -25,15 +25,17 @@ namespace Assets.Scripts.Characters {
 			_character = GetComponent<CharacterBase>();
 		}
 
-		private void HandlePrimary(bool value) {
-			CurrentItem?.OnPrimaryUse(value);
-		}
 
-		private void HandleSecondary(bool value) {
-			CurrentItem?.OnSecondaryUse(value);
-		}
+		private void HandlePrimary(bool value) => CurrentItem?.OnPrimaryUse(value);
+
+		private void HandleSecondary(bool value) => CurrentItem?.OnSecondaryUse(value);
+
 
 		public void EquipItem(Items.ItemCode itemCode) {
+			if (CurrentItem != null) {
+				UnequipItem();
+			}
+
 			Items.ItemBase item = _character.Inventory.GetItem(itemCode);
 			CurrentItem = item;
 			item.Equip();
@@ -41,7 +43,7 @@ namespace Assets.Scripts.Characters {
 			OnItemEquip?.Invoke(CurrentItem);
 		}
 
-		public void UnequipItem() {
+		private void UnequipItem() {
 			Items.ItemBase item = CurrentItem;
 			CurrentItem = null;
 			item.Unequip();

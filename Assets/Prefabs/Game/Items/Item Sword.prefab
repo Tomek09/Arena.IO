@@ -47,6 +47,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ItemCode>k__BackingField: 1
   _attackType: 0
+  _damage: 1
+  _offset: {x: 0, y: 0.25, z: 0}
+  _distance: 0.25
+  _radius: 0.25
 --- !u!1001 &2260208563157343302
 PrefabInstance:
   m_ObjectHideFlags: 0
