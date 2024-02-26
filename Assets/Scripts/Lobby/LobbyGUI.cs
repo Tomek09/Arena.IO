@@ -13,7 +13,8 @@ namespace Assets.Scripts.Lobby {
 			}
 
 			Utilities.GUIDrawer.DrawLabel(1, 0, "[Server]", TextAnchor.MiddleCenter);
-			Utilities.GUIDrawer.DrawButton(1, 1, "Start", LobbyManager.Instance.StartGame);
-		}	
+			Utilities.GUIDrawer.DrawButton(1, 1, "Start", () => LobbyManager.Instance.StartGame(false));
+			Utilities.GUIDrawer.DrawButton(1, 2, "Fast Start", () => LobbyManager.Instance.StartGame(true));
+		}
 	}
 }

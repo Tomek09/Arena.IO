@@ -27,10 +27,11 @@ namespace Assets.Scripts.Lobby {
 			Scenes.ScenesManager.Instance.LoadScene("Menu");
 		}
 
-		public void StartGame() {
-			if (!Players.PlayersManager.Instance.IsPlayersReady()) {
+		public void StartGame(bool forceStart = false) {
+			if (!forceStart && !Players.PlayersManager.Instance.IsPlayersReady()) {
 				return;
 			}
+
 			Players.PlayersManager.Instance.SetPlayersReadyStatus(false);
 			Scenes.ScenesManager.Instance.LoadScene("Game Scene");
 		}

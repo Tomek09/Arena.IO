@@ -26,4 +26,4 @@ MonoBehaviour:
     InitDuration: 0.1
     UpdateTime: 1
   <FollowSpeed>k__BackingField: 25
-  <FollowFreezeY>k__BackingField: 1
+  <FollowFreezeY>k__BackingField: 0

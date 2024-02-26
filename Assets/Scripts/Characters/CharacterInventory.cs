@@ -17,12 +17,6 @@ namespace Assets.Scripts.Characters {
 			_itemsByCode = _characterItems.ToDictionary((x) => x.ItemCode, (x) => x);
 		}
 
-		private void OnTriggerEnter(Collider other) {
-			if (other.TryGetComponent(out Pickupable.IPickupable pickupable)) {
-				pickupable.Pickup(_character);
-			}
-		}
-
 		public Items.ItemBase GetItem(Items.ItemCode itemCode) {
 			return _itemsByCode[itemCode];
 		}

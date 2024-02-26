@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5663267525734352362}
   - component: {fileID: 1321949106174882925}
   - component: {fileID: 3848988593702211689}
+  - component: {fileID: 5229663159733610308}
   - component: {fileID: 8782498356710475633}
   m_Layer: 0
   m_Name: Pickupable Item - Base
@@ -88,6 +89,27 @@ MonoBehaviour:
   _target: {fileID: 8906178641704072591}
   _speed: 5
   _distance: 0.1
+--- !u!114 &5229663159733610308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2132095857279285056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 2671718601
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!114 &8782498356710475633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,6 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edae21eddd7824d44b5fb31b26714fc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isServerOnly: 0
   _itemCode: 0
 --- !u!1 &3410456266417381466
 GameObject:
