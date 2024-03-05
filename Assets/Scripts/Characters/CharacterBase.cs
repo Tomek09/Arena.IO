@@ -16,6 +16,7 @@ namespace Assets.Scripts.Characters {
 		[field: SerializeField] public CharacterGravity Gravity { get; private set; }
 		[field: SerializeField] public CharacterEquipment Equipment { get; private set; }
 		[field: SerializeField] public CharacterInventory Inventory { get; private set; }
+		[field: SerializeField] public CharacterHealth Health { get; private set; }
 
 		private void Start() {
 			if (!IsLocalPlayer) {

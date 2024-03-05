@@ -26,7 +26,7 @@ namespace Assets.Scripts.Items.Weapons {
 
 		[Rpc(SendTo.Server, Delivery = RpcDelivery.Unreliable)]
 		public override void PrimaryUseRpc() {
-			Damage.DamageInfo damageInfo = new Damage.DamageInfo(_damage);
+			Damage.DamageInfo damageInfo = new Damage.DamageInfo(_owner.OwnerClientId, _damage);
 			Damage.IDamagable[] damagables = Damage.DamageController.GetDamagables(GetTriggerPosition(), _radius);
 			System.Array.ForEach(damagables, x => x.DealDamageRpc(damageInfo));
 		}
